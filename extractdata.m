@@ -9,17 +9,17 @@
 
 clear all;
 close all;
-%%%%%the directory contains all the event directories
+%the directory contains all the event directories
 datadir='/home/Nino/data/RAWDATA/';
 cd(datadir);
-%%%%%the txt which ONLY has station names
+%the txt which ONLY has station names
 staindex=textread('/home/Nino/tbc/stationlist.txt','%s'); 
-%%%%%prefunclab event directory has this format
+%prefunclab event directory has this format
 eventid='Event_*';
 events=dir(fullfile(datadir,eventid));
 
 for i=1:length(staindex)
-    %%%%%a directory to put the data you copy
+    %a directory for a station to put the data you copy
     newdir{i}=strcat('/home/Nino/tbc/NCC_Aniso/TZ.',staindex{i});
     if ~exist(newdir{i});
         mkdir(newdir{i});
@@ -31,6 +31,7 @@ for i=1:length(staindex)
         eqr=fullfile(eventdir,strcat('TZ.',staindex{i},'_2.5.i.eqr'));
         eqt=fullfile(eventdir,strcat('TZ.',staindex{i},'_2.5.i.eqt'));
         eqz=fullfile(eventdir,strcat('TZ.',staindex{i},'_2.5.i.z'));
+        %check 3 component data 
         if exist(eqr) && exist(eqt) && exist(eqz) 
             cmd1=['mkdir ',eventdir_new];
             [status,result]=system(cmd1);
