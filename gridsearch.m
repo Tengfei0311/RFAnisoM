@@ -11,10 +11,9 @@
 clear all;
 close all;
 
-
 datadir='/home/Nino/tbc/NCC_Aniso/';
 cd(datadir);
-stalist=dir('TZ*');%%%%%
+stalist=dir('TZ*');
 
 %search range of phi
 phib=0;
@@ -39,7 +38,7 @@ para.time=para.timeb:para.rate:para.timee;
 para.pstime=0;
 
 
-para.psint=round(((para.pstime-2-para.timeb)/para.rate):((para.pstime+2-para.timeb)/para.rate));%%%%%Ps range,to be changed
+para.psint=round(((para.pstime-0.5-para.timeb)/para.rate):((para.pstime+0.5-para.timeb)/para.rate));%%%%%Ps range,to be changed
 
 for k=1:length(stalist)
 
@@ -73,7 +72,7 @@ end
 
 
 
-r=eqr;%%%you can choose an interval of eqr & eqt, for example,[-5,15]s P arrival
+r=eqr;%%%you can choose an interval of eqr & eqt, for example,[-5,25]s P arrival
 t=eqt;
 
 
