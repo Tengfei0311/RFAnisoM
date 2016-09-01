@@ -12,16 +12,18 @@
 close all;
 clear all;
 
-%%%%%the directory contains data seperated by stations
+%the directory contains data seperated by stations
 datadir='/home/Nino/tbc/NCC_Aniso/';
 cd(datadir);
-stalist=dir('TZ*');%%%%%read stations by directory sign
+%read stations by directory names
+stalist=dir('TZ*');
 
 for k=1:length(stalist)
     statemp=char(stalist(k).name);
     stadir=fullfile(datadir,statemp);
     cd(stadir);
-    eventdir=dir('Event*');%%%%%event directory sign
+    %read events by directory names
+    eventdir=dir('Event*');
     
     for i=1:length(eventdir)
         cd(eventdir(i).name);
@@ -29,8 +31,8 @@ for k=1:length(stalist)
         eqtname=strcat(statemp,'_2.5.i.eqt');
         headtempeqr=readsac(eqrname);
         headtempeqt=readsac(eqtname);
-        [timer(:,i),eqr(:,i)]=getsacdata(headtempeqr);
-        [timet(:,i),eqt(:,i)]=getsacdata(headtempeqt);
+        %[timer(:,i),eqr(:,i)]=getsacdata(headtempeqr);
+        %[timet(:,i),eqt(:,i)]=getsacdata(headtempeqt);
         gcarc(i)=headtempeqr.GCARC;
         cd ..;
     end
@@ -53,14 +55,14 @@ for k=1:length(stalist)
     
     clear badevls;
     clear badevno;
-    clear eqr;
-    clear eqt;
+    %clear eqr;
+    %clear eqt;
     clear eventdir;
     clear gcarc;
     clear headtempeqr;
     clear headtempeqt;
-    clear timer;
-    clear timet;
+    %clear timer;
+    %clear timet;
     
 end
 
