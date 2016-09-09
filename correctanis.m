@@ -2,6 +2,12 @@
 
 function [rc,tc]=correctanis(para,r,t,theta,phi,deltat)
 
+%judge the input theta is rad system or angle system
+if max(theta)>2*pi
+theta=theta/180*pi;
+end
+
+
 num=length(para.time);
 eventnum=length(theta);
 
